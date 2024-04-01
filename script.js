@@ -124,9 +124,3 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function playGame(rounds = 5) {
- 
-}
-
-playGame()
-
