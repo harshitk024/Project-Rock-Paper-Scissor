@@ -1,3 +1,65 @@
+
+document.addEventListener("DOMContentLoaded",()=>{
+  
+   let buttons =  document.querySelector(".buttons")
+
+   buttons.addEventListener("click",(event)=>{
+    let target = event.target
+    switch(target.id){
+        case "paper":
+            playerChoice = "Paper"
+            break;
+        case "scissor":
+            playerChoice = "Scissor"
+            break;
+        case "rock":
+            playerChoice = "Rock"
+            break
+    }
+    let result = playRound(playerChoice,getComputerChoice())
+    document.querySelector("#result").textContent = result[0]
+    updateScore(result)
+    checkWinner()
+   })
+}
+)
+
+function checkWinner(){
+    score = document.querySelectorAll(".score")
+    isWinner = false
+    if(score[0].textContent == 5){
+        alert(`User Won by ${score[0].textContent}-${score[1].textContent}`)
+        isWinner = true
+    }
+    else if(score[1].textContent == 5){
+        alert(`Computer Won by ${score[1].textContent}-${score[0].textContent}`)
+        isWinner = true
+    }
+
+    if(isWinner){
+        score[0].textContent = 0
+        score[1].textContent = 0
+    }
+}
+
+function updateScore(result){
+    userWon = result[1]
+    compWon = result[2]
+    score = document.querySelectorAll(".score")
+
+ 
+    
+    if(userWon){
+         score[0].textContent = parseInt(score[0].textContent) + 1
+    }
+    else if(compWon){
+        score[1].textContent = parseInt(score[1].textContent) + 1
+    }
+
+ 
+}
+
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3)
 
@@ -17,36 +79,43 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     const player = playerSelection.toUpperCase()
     const computer = computerSelection.toUpperCase()
+    let usr_winner = false , comp_winner = false
 
     if (player === computer) {
-        return "Tie"
+        return ["Tie", usr_winner,comp_winner]
     }
     else {
 
         if (player == "ROCK") {
             if (computer == "SCISSOR") {
-                return `You Won ! Player : ${player} , Computer : ${computer}`
+                usr_winner = true
+                return [`You Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
             }
             else {
-                return `Computer Won ! Player : ${player} , Computer : ${computer}`
+                comp_winner = true
+                return [`Computer Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
             }
         }
         else if (player == "PAPER") {
             if (computer == "SCISSOR") {
-                return `Computer Won ! Player : ${player} , Computer : ${computer}`
+                comp_winner = true
+                return [`Computer Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
             }
             else {
-                return `You Won ! Player : ${player} , Computer : ${computer}`
+                usr_winner = true
+                return [`You Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
 
             }
         }
         else {
             if (computer == "PAPER") {
-                return `you Won ! Player : ${player} , Computer : ${computer}`
+                usr_winner = true
+                return [`You Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
 
             }
             else {
-                return `Computer Won ! Player : ${player} , Computer : ${computer}`
+                comp_winner = true
+                return [`Computer Won ! Player : ${player} , Computer : ${computer}`,usr_winner,comp_winner]
 
             }
         }
@@ -56,12 +125,7 @@ function playRound(playerSelection, computerSelection) {
 
 
 function playGame(rounds = 5) {
-    let i;
-    for (i = 0; i < rounds; i++) {
-        let comp = getComputerChoice()
-        let player = prompt("Enter your choice :  ")
-        console.log(playRound(player, comp))
-    }
+ 
 }
 
 playGame()

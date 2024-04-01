@@ -1,0 +1,58 @@
+* {
+    /* border : 2px solid red; */
+}
+
+body {
+    margin : 0;
+    background-color: #E9C874;
+}
+
+.header {
+    padding: 5px;
+    color: #E9C874;
+    background-color: #A34343;
+    height: 60px;
+    text-align: center;
+}
+
+.container{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game-info{
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+}
+.play-container {
+    background-color: #FBF8DD;
+    border : 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    height: 300px;
+    width : 300px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.buttons {
+    /* margin-top : auto; */
+    display: flex;
+    justify-content: space-around;
+    
+}
+.buttons button{
+    font-size: 20px;
+}
+
+#player-info div , #computer-info div{
+    display: flex;
+    gap : 15px;
+    text-align: center;
+    flex-direction: column;
+}
+.play-result {
+    text-align: center;
+}
